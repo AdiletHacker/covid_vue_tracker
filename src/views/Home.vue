@@ -15,7 +15,7 @@ export default {
     MainInfo,
     BarCharts
   },
-  data: () => {
+  data() {
     return {
       globalData: [],
       countriesData: []
@@ -35,7 +35,7 @@ export default {
       );
     }
 
-    this.countriesData = this.countries;
+    this.countriesData = this.countries.slice(1, 16);
   }
 };
 </script>
