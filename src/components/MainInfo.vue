@@ -38,9 +38,6 @@ export default {
 
 
 <style scoped>
-/* .card-body h4 {
-  font-size: 130%;
-} */
 
 @media only screen and (max-width: 1000px) {
   .card-deck {

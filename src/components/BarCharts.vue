@@ -1,6 +1,6 @@
 <template>
   <div>
-    <highcharts :options="chartOptions" ref="lineCharts"></highcharts>
+    <highcharts :options="options" ref="lineCharts"></highcharts>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ exportingInit(Highcharts);
 
 export default {
   name: "BarCharts",
+
   props: ["countriesData"],
 
   components: {
@@ -28,8 +29,8 @@ export default {
   data() {
     return {
       countriesInfo: [],
-      
-      chartOptions: {
+
+      options: {
         chart: {
           backgroundColor: "#1A1B1E",
           type: "column"
@@ -61,11 +62,11 @@ export default {
         legend: {
           enabled: false
         },
-        series: [  
+        series: [
           {
             name: "Population",
             data: this.countriesInfo.map(el => {
-              [el.country, parseInt(el.cases)] + ","
+              [el.country, parseInt(el.cases)] + ",";
             }),
             dataLabels: {
               enabled: true,
