@@ -38,6 +38,19 @@ export default {
 
 
 <style scoped>
+/* .card-body h4 {
+  font-size: 130%;
+} */
+
+@media only screen and (max-width: 1000px) {
+  .card-deck {
+    display: flex;
+    flex-flow: column;
+  }
+  .card-deck .card {
+    margin-bottom: 15px;
+  }
+}
 </style>>
 
 

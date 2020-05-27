@@ -4,13 +4,13 @@
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark" class="p-3">
       <div class="container">
-        <b-navbar-brand href="/">Covid-Tracker</b-navbar-brand>
+        <b-navbar-brand to="/">Covid-Tracker</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="/countries">All Countries</b-nav-item>
+            <b-nav-item to="/countries">All Countries</b-nav-item>
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">

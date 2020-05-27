@@ -21,10 +21,10 @@ export default {
       countriesData: []
     };
   },
-  methods: {
-    ...mapActions(["getGlobalData", "getCountriesData"])
+  methods: mapActions(["getGlobalData", "getCountriesData"]),
+  computed: {
+    ...mapGetters(["global", "countries"])
   },
-  computed: mapGetters(["global", "countries"]),
 
   created() {
     this.getGlobalData();
@@ -36,7 +36,7 @@ export default {
       );
     }
 
-    this.countriesData = this.countries
+    this.countriesData = this.countries;
   }
 };
 </script>
