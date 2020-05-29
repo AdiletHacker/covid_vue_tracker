@@ -1,5 +1,5 @@
 <template>
-  <b-container class="mb-5 container">
+  <b-container class="mb-5 container" fluid>
     <b-card-group class="mt-5">
       <b-col sm="6" v-for="country in countries" :key="country.country" class="mb-3">
         <b-card bg-variant="dark" text-variant="white">
@@ -34,6 +34,13 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1000px) {
+  .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 .card-text {
   margin: 0;
 }
