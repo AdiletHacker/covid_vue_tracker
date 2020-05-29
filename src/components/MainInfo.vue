@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="globalInfp mb-5">
+  <div class="globalInfo mb-5">
     <b-card-group deck class="mt-5">
       <b-card bg-variant="dark" text-variant="white">
         <b-card-subTitle class="mb-2">Global</b-card-subTitle>
