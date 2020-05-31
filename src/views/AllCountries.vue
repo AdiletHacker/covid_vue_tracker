@@ -25,8 +25,17 @@ export default {
     };
   },
 
+  mounted() {
+    this.$set(this.$store.state.search, "isOnPage", true);
+  },
+  beforeDestroy() {
+    this.$set(this.$store.state.search, "isOnPage", false);
+  },
+
   created() {
-    this.searchCountries = this.countries.filter(country => {
+    const countriesCopy = [...this.countries];
+
+    this.searchCountries = countriesCopy.filter(country => {
       const name = country.country.toLowerCase();
       const value = this.inputValue.toLowerCase();
       return name.indexOf(value) !== -1;

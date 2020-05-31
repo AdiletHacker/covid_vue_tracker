@@ -28,7 +28,7 @@
 <script>
 export default {
   name: "Navbar",
-  props: ["globalData"]
+  props: ["globalData"],
 };
 </script>
 

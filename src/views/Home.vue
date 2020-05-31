@@ -22,7 +22,6 @@ export default {
     };
   },
   methods: mapActions(["getGlobalData", "getCountriesData"]),
-
   computed: mapGetters(["global", "countries"]),
 
   created() {

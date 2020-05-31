@@ -13,7 +13,7 @@
             <b-nav-item to="/countries">All Countries</b-nav-item>
           </b-navbar-nav>
 
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav v-if="isOnPage" class="ml-auto">
             <b-nav-form @submit="addInputValue">
               <b-form-input :value="inputValue" size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
               <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
@@ -31,13 +31,8 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Navbar",
-  computed: mapGetters(["inputValue"]),
-  methods: {
-    ...mapActions(["addInputValue"]),
-    // addData(e) {
-    //   this.$set(this.$store.state.search, "inputValue", e.target.parentNode[0].value)
-    // }
-  },
+  computed: mapGetters(["inputValue", "isOnPage"]),
+  methods: mapActions(["addInputValue"]),
 };
 </script>
 
