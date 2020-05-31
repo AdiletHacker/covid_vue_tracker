@@ -14,8 +14,8 @@
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+            <b-nav-form @submit="addInputValue">
+              <b-form-input :value="inputValue" size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
               <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
             </b-nav-form>
           </b-navbar-nav>
@@ -27,12 +27,17 @@
 
 
 <script>
-Vue.use(BootstrapVue);
-import Vue from "vue";
-import { BootstrapVue } from "bootstrap-vue";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  computed: mapGetters(["inputValue"]),
+  methods: {
+    ...mapActions(["addInputValue"]),
+    // addData(e) {
+    //   this.$set(this.$store.state.search, "inputValue", e.target.parentNode[0].value)
+    // }
+  },
 };
 </script>
 

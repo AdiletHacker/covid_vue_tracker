@@ -1,7 +1,7 @@
-<template>
+<template :key="inputValue">
   <b-container class="mb-5 container" fluid>
     <b-card-group class="mt-5">
-      <b-col sm="6" v-for="country in countries" :key="country.country" class="mb-3">
+      <b-col sm="6" v-for="country in searchCountries" :key="country.country" class="mb-3">
         <b-card bg-variant="dark" text-variant="white">
           <b-card-title>{{country.country}}</b-card-title>
           <b-card-text>Cases: {{country.cases}} | Today: {{country.todayCases}} | Active: {{country.active}}</b-card-text>
@@ -17,10 +17,22 @@
 import { mapGetters } from "vuex";
 export default {
   name: "AllCountries",
-  computed: mapGetters(["countries"]),
+  computed: mapGetters(["countries", "inputValue"]),
+
+  data() {
+    return {
+      searchCountries: []
+    };
+  },
 
   created() {
-    this.countries.map(country => {
+    this.searchCountries = this.countries.filter(country => {
+      const name = country.country.toLowerCase();
+      const value = this.inputValue.toLowerCase();
+      return name.indexOf(value) !== -1;
+    });
+
+    this.searchCountries.map(country => {
       for (const key in country) {
         if (Number.isInteger(country[key])) {
           country[key] = country[key]
