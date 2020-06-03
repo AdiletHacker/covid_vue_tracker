@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 import { BootstrapVue } from "bootstrap-vue";
 Vue.use(BootstrapVue);
+import Fragment from 'vue-fragment'
+Vue.use(Fragment.Plugin)
 
 Vue.config.productionTip = false
 

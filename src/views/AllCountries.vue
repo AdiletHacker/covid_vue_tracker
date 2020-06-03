@@ -1,28 +1,40 @@
 <template :key="inputValue">
   <b-container class="mb-5 container" fluid>
+    <Pagination
+      :perPage="perPage"
+      :currentPage="currentPage"
+      :countries="countries"
+      @update="setCurrentPage"
+    />
     <b-card-group class="mt-5">
-      <b-col sm="6" v-for="country in searchCountries" :key="country.country" class="mb-3">
-        <b-card bg-variant="dark" text-variant="white">
-          <b-card-title>{{country.country}}</b-card-title>
-          <b-card-text>Cases: {{country.cases}} | Today: {{country.todayCases}} | Active: {{country.active}}</b-card-text>
-          <b-card-text>Deaths: {{country.deaths}} | Today: {{country.todayDeaths}}</b-card-text>
-          <b-card-text>Recovered: {{country.recovered}} | Critical: {{country.critical}}</b-card-text>
-        </b-card>
-      </b-col>
+      <PaginationList :searchCountries="searchCountries" />
     </b-card-group>
   </b-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import PaginationList from "../components/Pagination/PaginationList";
+import Pagination from "../components/Pagination/Pagination";
 export default {
   name: "AllCountries",
-  computed: mapGetters(["countries", "inputValue"]),
+  components: { PaginationList, Pagination },
+  computed: {
+    ...mapGetters(["countries", "inputValue"])
+  },
 
   data() {
     return {
-      searchCountries: []
+      searchCountries: [],
+      perPage: 10,
+      currentPage: 1
     };
+  },
+
+  methods: {
+    setCurrentPage(page) {
+      this.currentPage = page;
+    }
   },
 
   mounted() {
@@ -34,7 +46,6 @@ export default {
 
   created() {
     const countriesCopy = [...this.countries];
-
     this.searchCountries = countriesCopy.filter(country => {
       const name = country.country.toLowerCase();
       const value = this.inputValue.toLowerCase();
@@ -50,19 +61,13 @@ export default {
         }
       }
     });
+
+    const lastIndex = this.currentPage * this.perPage;
+    const firstIndex = lastIndex - this.perPage;
+    this.searchCountries = this.searchCountries.slice(firstIndex, lastIndex);
   }
 };
 </script>
 
 <style scoped>
-@media only screen and (max-width: 1000px) {
-  .col-sm-6 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
-.card-text {
-  margin: 0;
-}
 </style>
