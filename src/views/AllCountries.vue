@@ -40,11 +40,13 @@ export default {
   mounted() {
     this.$set(this.$store.state.search, "isOnPage", true);
   },
+
   beforeDestroy() {
     this.$set(this.$store.state.search, "isOnPage", false);
   },
 
   created() {
+
     const countriesCopy = [...this.countries];
     this.searchCountries = countriesCopy.filter(country => {
       const name = country.country.toLowerCase();

@@ -25,9 +25,9 @@ export default {
   },
   watch: {
     localCurrentPage(e) {
-      //this.$emit("update", e);
-      this.$set(this.$parent, 'currentPage', e);
-      console.log(this.$parent.currentPage)
+      this.$emit("update", e);
+      //this.$set(this.$parent, 'currentPage', e);
+      //console.log(this.$parent.currentPage)
     }
   }
 };
