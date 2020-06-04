@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <MainInfo v-bind:globalData="globalData" />
-    <BarCharts v-bind:countriesData="countriesData" />
+    <MainInfo :globalData="globalData" />
+    <BarCharts :countriesData="countriesData" />
   </div>
 </template>
 

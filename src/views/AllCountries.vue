@@ -1,46 +1,37 @@
-<template :key="inputValue">
+<template>
   <b-container class="mb-5 container" fluid>
+    <b-card-group class="mt-5 mb-3">
+      <PaginationList :searchCountries="searchCountries" />
+    </b-card-group>
     <Pagination
       :perPage="perPage"
       :currentPage="currentPage"
       :countries="countries"
-      @update="setCurrentPage"
+      :addCurrentPage="addCurrentPage"
     />
-    <b-card-group class="mt-5">
-      <PaginationList :searchCountries="searchCountries" />
-    </b-card-group>
   </b-container>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import PaginationList from "../components/Pagination/PaginationList";
 import Pagination from "../components/Pagination/Pagination";
 export default {
   name: "AllCountries",
   components: { PaginationList, Pagination },
-  computed: {
-    ...mapGetters(["countries", "inputValue"])
-  },
+  computed: mapGetters(["countries", "inputValue", "currentPage"]),
+  methods: mapActions(["addCurrentPage"]),
 
   data() {
     return {
       searchCountries: [],
       perPage: 10,
-      currentPage: 1
     };
-  },
-
-  methods: {
-    setCurrentPage(page) {
-      this.currentPage = page;
-    }
   },
 
   mounted() {
     this.$set(this.$store.state.search, "isOnPage", true);
   },
-
   beforeDestroy() {
     this.$set(this.$store.state.search, "isOnPage", false);
   },

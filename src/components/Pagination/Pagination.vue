@@ -4,6 +4,7 @@
       <b-pagination
         :total-rows="countries.length"
         :per-page="perPage"
+        align="center"
         first-text="First"
         prev-text="Prev"
         next-text="Next"
@@ -17,7 +18,7 @@
 <script>
 export default {
   name: "Pagination",
-  props: ["perPage", "currentPage", "countries", "setCurrentPage"],
+  props: ["perPage", "countries", "addCurrentPage", "currentPage"],
   data() {
       return {
           localCurrentPage: this.currentPage
@@ -25,9 +26,7 @@ export default {
   },
   watch: {
     localCurrentPage(e) {
-      this.$emit("update", e);
-      //this.$set(this.$parent, 'currentPage', e);
-      //console.log(this.$parent.currentPage)
+      this.addCurrentPage(e)
     }
   }
 };
