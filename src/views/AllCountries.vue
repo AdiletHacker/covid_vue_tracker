@@ -1,6 +1,9 @@
 <template>
   <b-container class="mb-5 container" fluid>
-    <b-card-group class="mt-5 mb-3">
+    <div v-if="isFound" class="container mb-3" align="right">
+      <b-button @click="removeInputValue('')" variant="secondary">Return to the List</b-button>
+    </div>
+    <b-card-group class="mb-3">
       <PaginationList :searchCountries="searchCountries" />
     </b-card-group>
     <Pagination
@@ -19,8 +22,10 @@ import Pagination from "../components/Pagination/Pagination";
 export default {
   name: "AllCountries",
   components: { PaginationList, Pagination },
-  computed: mapGetters(["countries", "inputValue", "currentPage"]),
-  methods: mapActions(["addCurrentPage", "getCountriesData"]),
+  computed: mapGetters(["countries", "inputValue", "currentPage", "isFound"]),
+  methods: {
+    ...mapActions(["addCurrentPage", "getCountriesData", "removeInputValue"]),
+  },
 
   data() {
     return {

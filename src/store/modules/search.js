@@ -2,17 +2,23 @@
 const state = {
     inputValue: "",
     isOnPage: false,
+    isFound: false
 };
 
 const getters = {
     inputValue: state => state.inputValue,
     isOnPage: state => state.isOnPage,
+    isFound: state => state.isFound,
 };
 
 const actions = {
-    addInputValue({ commit }, e) {
-        e.preventDefault();
+    addInputValue({ commit, state }, e) {
+        if (e.target[0].value) state.isFound = true;
         commit("setInputValue", e.target[0].value);
+    },
+    removeInputValue({ commit, state }, e) {
+        state.isFound = false;
+        commit("setInputValue", e);
     }
 };
 

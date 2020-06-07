@@ -1,7 +1,7 @@
 
 
 <template>
-  <div>
+  <div class="mb-5">
     <b-navbar toggleable="lg" type="dark" variant="dark" class="p-3">
       <div class="container">
         <b-navbar-brand to="/">Covid-Tracker</b-navbar-brand>
