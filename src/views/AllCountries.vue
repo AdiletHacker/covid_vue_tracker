@@ -20,7 +20,7 @@ export default {
   name: "AllCountries",
   components: { PaginationList, Pagination },
   computed: mapGetters(["countries", "inputValue", "currentPage"]),
-  methods: mapActions(["addCurrentPage"]),
+  methods: mapActions(["addCurrentPage", "getCountriesData"]),
 
   data() {
     return {
@@ -37,6 +37,7 @@ export default {
   },
 
   created() {
+    this.getCountriesData();
 
     const countriesCopy = [...this.countries];
     this.searchCountries = countriesCopy.filter(country => {

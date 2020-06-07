@@ -8,9 +8,10 @@
 <script>
 import MainInfo from "../components/MainInfo";
 import BarCharts from "../components/BarCharts";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Home",
+  methods: mapActions(["getGlobalData", "getCountriesData"]),
   components: {
     MainInfo,
     BarCharts
@@ -21,7 +22,6 @@ export default {
       countriesData: []
     };
   },
-  methods: mapActions(["getGlobalData", "getCountriesData"]),
   computed: mapGetters(["global", "countries"]),
 
   created() {

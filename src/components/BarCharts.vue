@@ -50,7 +50,7 @@ export default {
         yAxis: {
           min: 0,
           title: {
-            text: "Cases per countries"
+            text: false
           }
         },
         legend: {

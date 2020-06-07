@@ -34,4 +34,14 @@ export default {
 
 
 <style scoped>
+
+.b-pagination /deep/ li .page-link {
+  background: #343A40;
+  color: white;
+  border-color: #343A40;
+}
+
+.b-pagination /deep/ li.active .page-link { 
+  background: rgb(41, 40, 40);
+}
 </style>

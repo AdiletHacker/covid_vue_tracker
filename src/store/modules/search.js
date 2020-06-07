@@ -1,6 +1,6 @@
 
 const state = {
-    inputValue: "Eddie",
+    inputValue: "",
     isOnPage: false,
 };
 
