@@ -2,19 +2,22 @@
   <div class="container">
     <MainInfo :globalData="globalData" />
     <BarCharts :countriesData="countriesData" />
+    <Three />
   </div>
 </template>
 
 <script>
 import MainInfo from "../components/MainInfo";
 import BarCharts from "../components/BarCharts";
+import Three from "../components/Three";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Home",
   methods: mapActions(["getGlobalData", "getCountriesData"]),
   components: {
     MainInfo,
-    BarCharts
+    BarCharts,
+    Three
   },
   data() {
     return {
