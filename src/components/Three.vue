@@ -18,14 +18,17 @@ export default {
       mouseX: 0,
       mouseY: 0,
       windowHalfX: window.innerWidth / 2,
-      windowHalfY: window.innerHeight / 2
+      windowHalfY: window.innerHeight / 2,
+      container: null
     };
   },
   methods: {
     init() {
+      this.container = document.getElementById("container");
+
       this.camera = new THREE.PerspectiveCamera(
         60,
-        window.innerWidth / window.innerHeight,
+        this.container.clientWidth / this.container.clientHeight,
         1,
         10000
       );
@@ -60,22 +63,29 @@ export default {
       //
 
       this.renderer = new THREE.WebGLRenderer({ antialias: true });
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(this.renderer.domElement);
+      this.renderer.setPixelRatio(this.container.devicePixelRatio);
+      this.renderer.setSize(
+        this.container.clientWidth,
+        this.container.clientHeight
+      );
+      this.container.appendChild(this.renderer.domElement);
 
       //
 
       this.stats = new Stats();
-      document.body.appendChild(this.stats.dom);
+      this.container.appendChild(this.stats.dom);
 
       //
 
-      document.addEventListener("mousemove", this.onDocumentMouseMove, false);
+      this.container.addEventListener(
+        "mousemove",
+        this.onDocumentMouseMove,
+        false
+      );
 
       //
 
-      window.addEventListener("resize", this.onWindowResize, false);
+      this.container.addEventListener("resize", this.onWindowResize, false);
     },
     animate: function() {
       requestAnimationFrame(this.animate);
@@ -84,13 +94,17 @@ export default {
       this.stats.update();
     },
     onWindowResize() {
-      this.windowHalfX = window.innerWidth / 2;
-      this.windowHalfY = window.innerHeight / 2;
+      this.windowHalfX = this.container.clientWidth / 2;
+      this.windowHalfY = this.container.clientHeight / 2;
 
-      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.aspect =
+        this.container.clientWidth / this.container.clientHeight;
       this.camera.updateProjectionMatrix();
 
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.setSize(
+        this.container.clientWidth,
+        this.container.clientHeight
+      );
     },
     onDocumentMouseMove(event) {
       this.mouseX = (event.clientX - this.windowHalfX) * 10;
@@ -125,6 +139,6 @@ export default {
 <style scoped>
 #container {
   width: 100%;
-  height: 100vh;
+  height:70vh;
 }
 </style>

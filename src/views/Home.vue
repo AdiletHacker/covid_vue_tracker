@@ -44,7 +44,7 @@ export default {
 
 <style>
 body {
-  min-height: 200vh;
+  min-height: 2000px;
   background-color: #1a1b1e;
   color: white;
 }
