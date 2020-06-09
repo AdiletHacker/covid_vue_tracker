@@ -86,7 +86,7 @@ export default {
       this.render();
     },
     onWindowResize() {
-      this.windowHalfX = this.container.clientWidth / 2;
+      this.windowHalfX = this.container.clientWidth / 2;  
       this.windowHalfY = this.container.clientHeight / 2;
 
       this.camera.aspect =
