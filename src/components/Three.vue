@@ -4,7 +4,6 @@
 
 <script>
 import * as THREE from "three";
-import Stats from "three/examples/jsm/libs/stats.module";
 
 export default {
   name: "Three",
@@ -13,7 +12,6 @@ export default {
       camera: null,
       scene: null,
       renderer: null,
-      stats: null,
       group: null,
       mouseX: 0,
       mouseY: 0,
@@ -72,11 +70,6 @@ export default {
 
       //
 
-      this.stats = new Stats();
-      this.container.appendChild(this.stats.dom);
-
-      //
-
       this.container.addEventListener(
         "mousemove",
         this.onDocumentMouseMove,
@@ -91,7 +84,6 @@ export default {
       requestAnimationFrame(this.animate);
 
       this.render();
-      this.stats.update();
     },
     onWindowResize() {
       this.windowHalfX = this.container.clientWidth / 2;
