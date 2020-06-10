@@ -103,20 +103,21 @@ export default {
       this.mouseY = (event.clientY - this.windowHalfY) * 10;
     },
     render() {
-      var time = Date.now() * 0.001;
+      // COMMENTING TO DECREASE FPS LOOSE !!!
 
-      var rx = Math.sin(time * 0.7) * 0.5,
-        ry = Math.sin(time * 0.3) * 0.5,
-        rz = Math.sin(time * 0.2) * 0.5;
+      // var time = Date.now() * 0.001;
+      // var rx = Math.sin(time * 0.7) * 0.5,
+      //   ry = Math.sin(time * 0.3) * 0.5,
+      //   rz = Math.sin(time * 0.2) * 0.5;
 
       this.camera.position.x += (this.mouseX - this.camera.position.x) * 0.05;
       this.camera.position.y += (-this.mouseY - this.camera.position.y) * 0.05;
 
       this.camera.lookAt(this.scene.position);
 
-      this.group.rotation.x = rx;
-      this.group.rotation.y = ry;
-      this.group.rotation.z = rz;
+      // this.group.rotation.x = rx;
+      // this.group.rotation.y = ry;
+      // this.group.rotation.z = rz;
 
       this.renderer.render(this.scene, this.camera);
     }

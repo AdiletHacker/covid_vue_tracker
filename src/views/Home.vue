@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <MainInfo :globalData="globalData" />
+    <transition name="fade">
+      <MainInfo v-if="show" :globalData="globalData" />
+    </transition>
     <BarCharts :countriesData="countriesData" />
-    <Three />
+    <Three v-if="show" />
   </div>
 </template>
 
@@ -22,10 +24,19 @@ export default {
   data() {
     return {
       globalData: [],
-      countriesData: []
+      countriesData: [],
+      show: false
     };
   },
   computed: mapGetters(["global", "countries"]),
+
+  mounted() {
+    this.show = true;
+  },
+
+  beforeDestroy() {
+    this.show = false;
+  },
 
   created() {
     this.getGlobalData();
@@ -47,6 +58,13 @@ body {
   min-height: 2000px;
   background-color: #1a1b1e;
   color: white;
+}
+
+.fade-enter-active {
+  transition: opacity .5s;
+}
+.fade-enter {
+  opacity: 0;
 }
 </style>
 

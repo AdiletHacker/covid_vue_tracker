@@ -11,10 +11,10 @@ export default {
   name: "App",
   components: {
     Navbar
-  }
+  },
 };
 </script>
 
-<style>
+<style scoped>
 </style>
 

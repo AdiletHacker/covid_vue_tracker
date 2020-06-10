@@ -1,18 +1,20 @@
 <template>
-  <b-container class="mb-5 container" fluid>
-    <div v-if="isFound" class="container mb-3" align="right">
-      <b-button @click="removeInputValue('')" variant="secondary">Return to the List</b-button>
-    </div>
-    <b-card-group class="mb-3">
-      <PaginationList :searchCountries="searchCountries" />
-    </b-card-group>
-    <Pagination
-      :perPage="perPage"
-      :currentPage="currentPage"
-      :countries="countries"
-      :addCurrentPage="addCurrentPage"
-    />
-  </b-container>
+  <transition name="slide-fade">
+    <b-container v-if="show" class="mb-5 container" fluid>
+      <div v-if="isFound" class="container mb-3" align="right">
+        <b-button @click="removeInputValue('')" variant="secondary">Return to the List</b-button>
+      </div>
+      <b-card-group class="mb-3">
+        <PaginationList :searchCountries="searchCountries" />
+      </b-card-group>
+      <Pagination
+        :perPage="perPage"
+        :currentPage="currentPage"
+        :countries="countries"
+        :addCurrentPage="addCurrentPage"
+      />
+    </b-container>
+  </transition>
 </template>
 
 <script>
@@ -24,20 +26,23 @@ export default {
   components: { PaginationList, Pagination },
   computed: mapGetters(["countries", "inputValue", "currentPage", "isFound"]),
   methods: {
-    ...mapActions(["addCurrentPage", "getCountriesData", "removeInputValue"]),
+    ...mapActions(["addCurrentPage", "getCountriesData", "removeInputValue"])
   },
 
   data() {
     return {
       searchCountries: [],
       perPage: 10,
+      show: false
     };
   },
 
   mounted() {
+    this.show = true;
     this.$set(this.$store.state.search, "isOnPage", true);
   },
   beforeDestroy() {
+    this.show = false;
     this.$set(this.$store.state.search, "isOnPage", false);
   },
 
@@ -69,4 +74,11 @@ export default {
 </script>
 
 <style scoped>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

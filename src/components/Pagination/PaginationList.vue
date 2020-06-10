@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "PaginationList",
-  props: ["searchCountries"],
+  props: ["searchCountries"]
 };
 </script>
 
