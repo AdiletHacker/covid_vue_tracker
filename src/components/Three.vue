@@ -86,7 +86,7 @@ export default {
       this.render();
     },
     onWindowResize() {
-      this.windowHalfX = this.container.clientWidth / 2;  
+      this.windowHalfX = this.container.clientWidth / 2;
       this.windowHalfY = this.container.clientHeight / 2;
 
       this.camera.aspect =
@@ -132,6 +132,25 @@ export default {
 <style scoped>
 #container {
   width: 100%;
-  height:70vh;
+  height: 70vh;
+  margin-bottom: 100px;
+}
+
+@media only screen and (max-width: 1000px) {
+  #container {
+    height: 50vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #container {
+    height: 40vh;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #container {
+    height: 33vh;
+  }
 }
 </style>

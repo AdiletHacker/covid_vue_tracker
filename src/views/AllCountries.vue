@@ -75,7 +75,7 @@ export default {
 
 <style scoped>
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 1s ease;
 }
 .slide-fade-enter {
   transform: translateX(10px);

@@ -55,13 +55,12 @@ export default {
 
 <style>
 body {
-  min-height: 2000px;
   background-color: #1a1b1e;
   color: white;
 }
 
 .fade-enter-active {
-  transition: opacity .5s;
+  transition: opacity 1s;
 }
 .fade-enter {
   opacity: 0;
