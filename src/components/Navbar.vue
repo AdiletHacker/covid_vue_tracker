@@ -41,6 +41,7 @@ export default {
   methods: {
     ...mapActions(["addInputValue", "addCurrentPage"]),
     addValue(e) {
+      e.preventDefault();
       this.addInputValue(e);
       this.addCurrentPage(1);
     }
