@@ -12,10 +12,7 @@ const actions = {
     }
 };
 const mutations = {
-    setCurrentPage: (state, page) => {
-        state.currentPage = page;
-        return location.reload()
-    }
+    setCurrentPage: (state, page) => state.currentPage = page,
 };
 
 
