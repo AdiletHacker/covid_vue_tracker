@@ -2,12 +2,13 @@
   <transition name="slide-fade">
     <b-container v-if="show" class="mb-5 container" fluid>
       <div v-if="isFound" class="container mb-3" align="right">
-        <b-button @click="removeInputValue('')" variant="secondary">Return to the List</b-button>
+        <b-button @click="onReturn" variant="secondary">Return to the List</b-button>
       </div>
       <b-card-group class="mb-3">
         <PaginationList :searchCountries="searchCountries" />
       </b-card-group>
       <Pagination
+        v-if="isLastPage || searchCountries.length >= perPage"
         :perPage="perPage"
         :currentPage="currentPage"
         :countries="countries"
@@ -26,14 +27,19 @@ export default {
   components: { PaginationList, Pagination },
   computed: mapGetters(["countries", "inputValue", "currentPage", "isFound"]),
   methods: {
-    ...mapActions(["addCurrentPage", "getCountriesData", "removeInputValue"])
+    ...mapActions(["addCurrentPage", "getCountriesData", "removeInputValue"]),
+    onReturn() {
+      this.removeInputValue("");
+      this.addCurrentPage(1);
+    },
   },
 
   data() {
     return {
       searchCountries: [],
       perPage: 10,
-      show: false
+      show: false,
+      isLastPage: false
     };
   },
 
@@ -69,6 +75,10 @@ export default {
     const lastIndex = this.currentPage * this.perPage;
     const firstIndex = lastIndex - this.perPage;
     this.searchCountries = this.searchCountries.slice(firstIndex, lastIndex);
+
+    if (this.countries.slice(-1)[0] === this.searchCountries.slice(-1)[0]) {
+      this.isLastPage = true;
+    }
   }
 };
 </script>
