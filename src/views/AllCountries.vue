@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <b-container :key="currentPage" v-if="show" class="mb-5 container" fluid>
+    <b-container :key="isFound || currentPage" v-if="show" class="mb-5 container" fluid>
       <div v-if="isFound" class="container mb-3" align="right">
         <b-button @click="onReturn" variant="secondary">Return to the List</b-button>
       </div>
@@ -66,7 +66,7 @@ export default {
       if (this.countries.slice(-1)[0] === this.searchCountries.slice(-1)[0]) {
         this.isLastPage = true;
       }
-    },
+    }
   },
 
   created() {
@@ -77,6 +77,10 @@ export default {
   watch: {
     currentPage() {
       this.isPageUpdated = false;
+    },
+    isFound() {
+      this.changeCountries();
+      this.isLastPage = false;
     }
   },
 

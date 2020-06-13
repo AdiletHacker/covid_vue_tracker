@@ -23,10 +23,7 @@ const actions = {
 };
 
 const mutations = {
-    setInputValue: (state, payload) => {
-        state.inputValue = payload;
-        return location.reload();
-    },
+    setInputValue: (state, payload) => state.inputValue = payload,
     setIsOnPage: (state, payload) => state.isOnPage = payload
 }
 
